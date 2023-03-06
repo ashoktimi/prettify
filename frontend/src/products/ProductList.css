@@ -1,0 +1,28 @@
+/* 
+.Product-div{
+    display: flex;
+    flex-wrap: wrap;
+    width: 85%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: 'rgb(219, 204, 205)';
+}
+.ProductCard-div{
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: calc(25% - 20px);
+    height:33rem;
+    margin: 10px;
+    background-color:white;
+    text-align: center;
+    border-radius: .5rem;
+} */
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+.NavBar-name-div{
+    margin: auto;
+    left: 0;
+    right: 0;
+} 
+
+.NavBar-name{
+    font-family: 'Caveat', cursive;
+    color: purple;
+    letter-spacing: 0.5rem;
+    font-size: 4rem;
+    text-decoration: none;
+    margin-left: 5rem;
+}
+
+.NavBar-name:hover{
+  color: purple;
+}
+
+
+.navbar-toggler{
+  color:rgb(243, 224, 230);
+  border: none;
+}
+
+.navbar-toggler-icon{
+  margin-left: 2rem;
+}
+
+.NavBar-logout{
+  margin-right: 5rem;
+  color: #333333;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
+  padding-bottom: 2rem;
+} 
+
+
+p{
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: black;
+  font-size: 2rem;
+}
+
+.bag-quantity {
+  border-radius: 50%;
+  background: yellow;
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+  padding: 0 .5rem  0 .5rem;
+}

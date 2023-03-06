@@ -1,0 +1,12 @@
+form{
+  left:0;
+  right:0;
+  margin: auto;
+}
+.float-right{
+ margin-top: 0.5rem;
+}
+
+.LoginForm label{
+    font-size: 25px;
+}

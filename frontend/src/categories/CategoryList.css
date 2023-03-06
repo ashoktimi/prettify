@@ -1,0 +1,29 @@
+.CategoryList-li{
+  margin-bottom: 1.5rem;  
+  margin-right: 3rem;
+}
+  .CategoryList-link {
+    color: black;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+    font-size: 25px;
+}
+    
+.BrandList-link:hover {
+  text-decoration: underline;
+}
+
+.CategoryList-column {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  flex-wrap: wrap;
+  left: 0;
+  right: 0;   
+  margin: auto;
+  list-style: none;
+  background-color: rgb(195, 206, 182);
+  padding:10%;
+  z-index: 2;
+}

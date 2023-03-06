@@ -1,0 +1,30 @@
+.BrandList-li{
+  margin-bottom: 1.5rem;  
+  margin-right: 2rem;
+}
+  .BrandList-link {
+    color: black;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+    font-size: 25px;
+  }
+    
+  .BrandList-link:hover {
+    text-decoration: underline;
+  }
+  
+  .BrandList-column {
+    display: flex;
+    justify-content:space-around;
+    position: absolute;
+    flex-wrap: wrap;
+    left: 0;
+    right: 0;   
+    margin: auto;
+    list-style: none;
+    background-color: rgb(195, 206, 182);
+    padding:10%;
+    z-index: 2;
+  }
+

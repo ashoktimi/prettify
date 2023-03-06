@@ -1,0 +1,22 @@
+
+  .TypeList-link {
+    color: black;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: 'Heebo', sans-serif;
+    font-size: 18px;
+  }
+    
+  .TypeList-link:hover {
+    text-decoration: underline;
+  }
+  
+
+
+  .list {
+    display: none;
+  }
+  
+  .element:hover .list {
+    display: block;
+  }

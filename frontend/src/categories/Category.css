@@ -1,0 +1,19 @@
+.Category-name{
+    display: 'flex';
+    justify-content: center;
+    text-transform: capitalize;
+    text-align: center;
+ }
+
+ .Category-div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: 10%;
+ }
+  
+ .CategoryCard-div {
+    margin-bottom: 1rem;
+    flex-basis: calc(33.33% - 1em);
+    text-decoration: none;
+ }
