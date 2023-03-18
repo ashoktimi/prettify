@@ -20,7 +20,7 @@ const CategoryList = ({ categories, handleCatHover }) =>{
           </ul>
         </div>
         :
-        <ul style={{ listStyle: 'none' }}>
+        <ul className="Categorylist-toggler-ul">
           {categories.map(c => (
             <li key={c.id}><Link to={`/categories/${c.name}/${c.id}`}>{c.name}</Link></li>
           ))}

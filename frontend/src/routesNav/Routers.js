@@ -3,7 +3,6 @@ import { ToastContainer } from "react-toastify";
 import React, { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
 import PrettifyApi from "../api/api";
-import BrandList from "../brands/BrandList";
 import Brand from "../brands/Brand";
 import ProductList from "../products/ProductList";
 import Product from "../products/Product";
@@ -15,7 +14,6 @@ import TagLists from "../tags/TagLIst";
 import Tag from "../tags/Tag";
 import TypeList from "../types/TypeList";
 import Type from "../types/Type";
-import NavbarBottom from './NavBottom';
 import PrivateRoute from "./privateRoute";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
@@ -24,7 +22,7 @@ import UserContext from "../auth/userContext";
 import LoadingSpinner from "../helpers/LoadingSpinner";
 import NotFound from "./NotFound";
 import ShoppingCart from "./ShoppingCard";
-import Cart from "../components/Cart";
+import CheckoutPage from "../cart/Checkout";
 import "react-toastify/dist/ReactToastify.css";
 
 // Key name for storing token in localStorage for "remember me" re-login
@@ -34,8 +32,11 @@ const Routers = () =>{
 const [infoLoaded, setInfoLoaded] = useState(false);
 const [currentUser, setCurrentUser] = useState(null);
 const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+const [showOffcanvas, setShowOffcanvas] = useState(false);
 
-
+const handleToggleOffcanvas = () => {
+  setShowOffcanvas(!showOffcanvas);
+};
 
 // Load user info from API. Until a user is logged in and they have a token,
 // this should not run. It only needs to re-run when a user logs out, so
@@ -57,7 +58,7 @@ useEffect(function loadUserInfo() {
     setInfoLoaded(false);
     getCurrentUser();
 },[token])
-console.log(currentUser);
+
 
 /** Handles site-wide logout. */
 function logout() {
@@ -109,14 +110,14 @@ async function login(loginData) {
           <BrowserRouter>
           <ToastContainer />
             <UserContext.Provider
-             value={{ currentUser, setCurrentUser }}>
+             value={{ currentUser, setCurrentUser, showOffcanvas, handleToggleOffcanvas }}>
             <NavBar logout={logout}/>
             <Routes>
                 <Route path='/' element={<Home/>}></Route>    
                 <Route path='/login' element={<LoginForm login={login}/>}></Route>
                 <Route path='/signup' element={<SignupForm signup={signup}/>}></Route>
-                <Route element={<PrivateRoute/>}>
-                  <Route path="/cart" element={<Cart currentUser={currentUser}/>} />
+                <Route element={<PrivateRoute/>}>              
+                  <Route path="/shopping" element={<ShoppingCart />} />
                   <Route path='/products' element={<ProductList/>}></Route>
                   <Route path='/products/:name/:id' element={<Product/>}></Route>
                   <Route path='/brands/:name/:id' element={<Brand/>}></Route>   
@@ -126,11 +127,11 @@ async function login(loginData) {
                   <Route path='/tags/:name/:id' element={<Tag/>}></Route>
                   <Route path='/types/:type' element={<TypeList/>}></Route>
                   <Route path='/types/:type/:id' element={<Type/>}></Route>
-                </Route>
-              <Route path='/*' element={ <NotFound />}/>    
+                  <Route path="/checkout" element={<CheckoutPage />} /> 
+                  <Route path='/*' element={ <NotFound />}/>    
+                </Route>            
             </Routes>
-            <NavbarBottom />
-          </UserContext.Provider>  
+          </UserContext.Provider>     
           </BrowserRouter>
       </div>
     )

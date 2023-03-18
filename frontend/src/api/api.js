@@ -82,6 +82,16 @@ class PrettifyApi{
       let res = await this.request('products', { name });
       return res;
     }
+    /** Get specific  products list */
+    static async getSpecialProducts() {
+      let res = await this.request('products/lists');
+      return res;
+    }
+    /** Get random  products list */
+    static async getRecProducts() {
+      let res = await this.request('products/random');
+      return res;
+    }
 
     /** Get details on a product by id. */
     static async getProduct(id) {

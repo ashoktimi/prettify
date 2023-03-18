@@ -1,36 +1,75 @@
 
-.NavBar-ul{
-    display: flex;
-    left: 0;
-    right: 0;
-    margin: auto;
-    list-style: none;
-    margin-top: 1rem;
-    padding-bottom: 2rem;
-    justify-content: center;
-}
-
 .NavBar-link {
     color: #333333;
     text-decoration:none;
-    margin-right: 2.5rem;
-    font-size: 20px;
+    margin-left: 1.5rem;
     font-weight: bold;
     font-family: 'Heebo', sans-serif;
-    padding-bottom: 2rem;
+    margin-top: 15px;
+    font-size: 20px;
 } 
 
 .NavBar-dropdown{
-    font-size: 20px;
     font-weight: bold;
-    color: #333333;
     font-family: 'Heebo', sans-serif;
-    margin-right: 3rem;
+    margin-left: 1.5rem;
+}
+
+.NavBar-dropdown > .dropdown-toggle::after {
+  display: none;
+}
+
+.nav-link{
+    color: #333333;
+    padding-top: 5px;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.nav-item{
+  margin-top: 10px;
 }
 .NavBar-dropdown-link{
-    font-size: 22px;
     color: #333333;
     font-family: 'Heebo', sans-serif;
     text-decoration: none;
     text-transform: capitalize;
+}
+
+.Navbar-bag{
+    color:black;
+    text-decoration: none;
+    margin-right: 15px;
+    margin-left: 2.5rem;
+    margin-top: 10px;
+}
+
+.Navbar-bag:hover{
+  color: black;
+}
+
+.bag-quantity {
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
+}
+.Profile-dropdown{
+  padding-top: 5px;
+}
+.Profile-dropdown > .dropdown-toggle::after{
+  display: none;
+}
+
+.Navbar-logout{
+  color: #333333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Heebo', sans-serif;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.Navbar-logout:hover{
+  color: black;
 }

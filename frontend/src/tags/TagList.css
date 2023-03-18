@@ -1,31 +1,51 @@
+/* css property for taglist in navbar */
+.TagLists-ul {
+  display: flex;
+  justify-content:space-around;
+  position: absolute;
+  flex-wrap: wrap;
+  left: 0;
+  right: 0;   
+  margin: auto;
+  list-style: none;
+  background-color: rgb(195, 206, 182);
+  padding:10%;
+  z-index: 2;
+}
+
 .TagLists-li{
   margin-bottom: 1.5rem;  
   margin-right: 2rem;
 }
-  .TagLists-link {
-    color: black;
-    text-decoration: none;
-    text-transform: capitalize;
-    font-family: 'Heebo', sans-serif;
-    font-size: 25px;
-  }
-    
-  .TagLists-link:hover {
-    text-decoration: underline;
+
+.TagLists-link {
+  color: black;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: 'Heebo', sans-serif;
+  font-size: 25px;
+}
+  
+.TagLists-link:hover {
+  text-decoration: underline;
+}  
+
+
+/* css property for taglist in offcanvas toggler */
+  .Taglist-toggler-ul {
+    list-style: none;
   }
   
-  .TagLists-ul {
-    display: flex;
-    justify-content:space-around;
-    position: absolute;
-    flex-wrap: wrap;
-    left: 0;
-    right: 0;   
-    margin: auto;
-    list-style: none;
-    background-color: rgb(195, 206, 182);
-    padding:10%;
-    z-index: 2;
+  .Taglist-toggler-ul li {
+    margin: 3.7rem 0;
+    border-bottom: .5px solid rgb(233, 227, 227);
   }
-
-
+  .Taglist-toggler-ul a {
+    text-transform: capitalize;
+    font-weight: bold;
+    text-decoration: none; 
+    color: #333;
+  }
+  .Taglist-toggler-ul a:hover{
+    color: purple;
+  }

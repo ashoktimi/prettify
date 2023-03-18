@@ -21,7 +21,6 @@ class TagList {
              GROUP BY t.id, t.name
              HAVING COUNT(tp.id) >= 3
              ) subquery
-             WHERE subquery.product_count % 3 = 0    
              ORDER BY subquery.product_count DESC; `);
         return tagListRes.rows;
     }
@@ -31,14 +30,15 @@ class TagList {
         const taglistRes = await db.query(`SELECT * FROM taglist WHERE id = $1`, [id]);
         const taglist = taglistRes.rows[0];
         if(! taglist) throw new NotFoundError(`No taglist : ${id}`)
-
+        
         const productRes = await db.query(
             `SELECT p.id, p.product_key, p.brand_id, p.name, p.price, p.price_sign, prev_price, p.image_link, p.description, p.rating, p.number_rating, p.category_id, p.type_id
-            FROM product p
-            JOIN taglist_product tp ON p.id = tp.product_id
-            JOIN taglist t ON tp.taglist_id = t.id
-            WHERE t.id = $1 ORDER BY id`,[id]
+             FROM product p
+             JOIN taglist_product tp ON p.id = tp.product_id
+             JOIN taglist t ON tp.taglist_id = t.id
+             WHERE t.id = $1 ORDER BY p.id LIMIT ((SELECT COUNT(*) FROM product p JOIN taglist_product tp ON p.id = tp.product_id WHERE tp.taglist_id = $1) / 3) * 3`, [id]
         );
+        
 
         taglist.products = productRes.rows
         return taglist;

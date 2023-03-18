@@ -25,7 +25,7 @@ const TagLists = ({ tags, handleTagHover }) =>{
         </ul>  
       </div> 
     :  
-    <ul style={{ listStyle: 'none' }}>
+    <ul className="Taglist-toggler-ul">
       {tags.map(c => (
        <li key={c.id}><Link to={`/tags/${c.name}/${c.id}`}>{c.name}</Link></li>
      ))}

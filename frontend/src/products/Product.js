@@ -29,13 +29,14 @@ const Product = () =>{
             {product
             ?(<div className="Product-div" key={product.id}>              
                <ProductDetail 
+                id={product.id}
                 name={product.name} 
-                price={product.price}
+                price={parseFloat(product.price).toFixed(2)}
                 priceSign={product.price_sign}
-                prevPrice={product.prev_price}
+                prevPrice={parseFloat(product.prev_price).toFixed(2)}
                 description={product.description}
-                image={product.image_link}
-                rating={product.rating}
+                image_link={product.image_link}
+                rating={parseFloat(product.rating).toFixed(1)}
                 numOfRating={product.number_rating}
                 color={product.colors}
               />                

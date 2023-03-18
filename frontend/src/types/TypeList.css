@@ -1,17 +1,23 @@
-
+  .TypeList{
+    margin-top: 10rem;
+  }
+  .TypeLists{
+    margin-top: 10rem;
+  }
   .TypeList-link {
-    color: black;
+    display:block;
     text-decoration: none;
     text-transform: capitalize;
     font-family: 'Heebo', sans-serif;
-    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 4.7rem 2rem;
+    border-bottom: .5px solid rgb(233, 227, 227);    
   }
     
   .TypeList-link:hover {
-    text-decoration: underline;
+    color: purple;
   }
-  
-
 
   .list {
     display: none;

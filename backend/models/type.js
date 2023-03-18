@@ -28,10 +28,12 @@ class Type {
         const type = typeRes.rows[0];
         console.log(type.id)
         if(! type) throw new NotFoundError(`No product type : ${name}`)
+
         const productRes = await db.query(
-            `SELECT id, product_key, brand_id, name, price, price_sign, prev_price, image_link, product_link, website_link, description, rating,  number_rating, category_id
-            FROM product WHERE type_id = $1 ORDER BY id`,[type.id]
+            `SELECT id, product_key, brand_id, name, price, price_sign, prev_price, image_link, product_link, website_link, description, rating, number_rating, category_id
+             FROM product WHERE type_id = $1 ORDER BY id LIMIT ((SELECT COUNT(*) FROM product WHERE type_id = $1) / 3) * 3`, [type.id]
         );
+        
         type.products = productRes.rows
         return type;
     }

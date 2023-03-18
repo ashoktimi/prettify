@@ -1,3 +1,17 @@
+/* css property for categorylist in navbar */
+.CategoryList-column {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  flex-wrap: wrap;
+  left: 0;
+  right: 0;   
+  margin: auto;
+  list-style: none;
+  background-color: rgb(195, 206, 182);
+  padding:10%;
+  z-index: 2;
+}
 .CategoryList-li{
   margin-bottom: 1.5rem;  
   margin-right: 3rem;
@@ -14,16 +28,22 @@
   text-decoration: underline;
 }
 
-.CategoryList-column {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  flex-wrap: wrap;
-  left: 0;
-  right: 0;   
-  margin: auto;
+/* css property for categorylist in offcanvas toggler */
+
+.Categorylist-toggler-ul {
   list-style: none;
-  background-color: rgb(195, 206, 182);
-  padding:10%;
-  z-index: 2;
+}
+
+.Categorylist-toggler-ul li {
+  margin: 3.7rem 0;
+  border-bottom: .5px solid rgb(233, 227, 227);
+}
+.Categorylist-toggler-ul a {
+  text-transform: capitalize;
+  font-weight: bold;
+  text-decoration: none; 
+  color: #333;
+}
+.Categorylist-toggler-ul a:hover{
+  color: purple;
 }

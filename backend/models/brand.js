@@ -2,8 +2,7 @@
 
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
-
-
+   
 class Brand {
     static async create({ name }) {
         const duplicateCheck = await db.query(`SELECT id FROM brand WHERE name = $1`, [name])
@@ -20,8 +19,7 @@ class Brand {
                      LEFT JOIN product p ON b.id = p.brand_id                     
                      GROUP BY b.id, b.name     
                      HAVING COUNT(p.id) >= 3
-                     ) subquery
-                     WHERE subquery.product_count % 3 = 0              
+                     ) subquery                            
                      ORDER BY subquery.product_count DESC; `);
         return brandRes.rows;
     }
@@ -33,7 +31,7 @@ class Brand {
 
         const productRes = await db.query(
             `SELECT id, product_key, name, price, price_sign, prev_price, image_link, description, rating, number_rating, category_id, type_id
-             FROM product WHERE brand_id = $1 ORDER BY id`,[id]
+             FROM product WHERE brand_id = $1 ORDER BY id LIMIT ((SELECT COUNT(*) FROM product WHERE brand_id = $1) / 3) * 3`, [id]
         );
         brand.products = productRes.rows
         return brand;

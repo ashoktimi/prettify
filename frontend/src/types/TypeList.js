@@ -3,21 +3,24 @@ import { Link } from "react-router-dom";
 import './TypeList.css'
 
 const TypeList = ({ types }) =>{
-
-    return (
+ 
+ 
+  return (
       <>
           {types.length > 1 ?
-          <div>
+          <div className="TypeLists">
           {types.map(t => (
             <Link className="TypeList-link" to={`/types/${t.type}/${t.name}`} key={t.id}>
-              <h1 >{(t.name).trim().replace("_", " ")}</h1>
+              {(t.name).trim().replace("_", " ")}
             </Link>           
           ))}
           </div>
           :
-          <Link className="TypeList-link" to={`/types/${types.type}/${types.name}`} key={types.id}>
-          <h1 >{types[0].name}</h1>
-          </Link> 
+          <div className="TypeList">
+            <Link className="TypeList-link" to={`/types/${types[0].type}/${types[0].name}`} key={types.id}>
+              {(types[0].name).trim().replace("_", " ")}
+            </Link> 
+          </div>
           }
      </>
     );

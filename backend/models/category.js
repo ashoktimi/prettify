@@ -3,7 +3,6 @@
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
 
-
 class Category {
     static async create({ name }) {
         const duplicateCheck = await db.query(`SELECT id FROM category WHERE name = $1`, [name])
@@ -21,8 +20,7 @@ class Category {
                      LEFT JOIN product p ON c.id = p.category_id
                      GROUP BY c.id, c.name
                      HAVING COUNT(p.id) >= 3
-                     ) subquery
-                     WHERE subquery.product_count % 3 = 0    
+                     ) subquery     
                      ORDER BY subquery.product_count DESC; `);
         return categoryRes.rows;
     }
@@ -31,9 +29,10 @@ class Category {
         const categoryRes = await db.query(`SELECT * FROM category WHERE id = $1`, [id]);
         const category = categoryRes.rows[0];
         if(! category) throw new NotFoundError(`No category : ${id}`)
+
         const productRes = await db.query(
-            `SELECT id, product_key, brand_id, name, price, price_sign, prev_price, image_link, description, rating, number_rating, type_id 
-            FROM product WHERE category_id = $1 ORDER BY id`,[id]
+            `SELECT id, product_key, brand_id, name, price, price_sign, prev_price, image_link, description, rating, number_rating, type_id
+             FROM product WHERE category_id = $1 ORDER BY id LIMIT ((SELECT COUNT(*) FROM product WHERE category_id = $1) / 3) * 3`, [id]
         );
         category.products = productRes.rows
         return category;

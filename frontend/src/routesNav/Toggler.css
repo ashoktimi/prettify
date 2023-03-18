@@ -2,43 +2,57 @@
     margin: auto;
     left: 0;
     right: 0;
-} 
-
+}
 .NavBar-name{
     font-family: 'Caveat', cursive;
     color: purple;
     letter-spacing: 0.5rem;
-    font-size: 4rem;
+    font-size: 3rem;
     text-decoration: none;
-    margin-left: 5rem;
 }
-
 .NavBar-name:hover{
   color: purple;
 }
-
-
 .navbar-toggler{
   color:rgb(243, 224, 230);
   border: none;
 }
 
-.navbar-toggler-icon{
-  margin-left: 2rem;
-}
-
-.NavBar-logout{
-  margin-right: 5rem;
+.NavBar-auth_Btn{
+  margin-left: 1rem;
   color: #333333;
   text-decoration: none;
-  font-size: 25px;
   font-weight: bold;
   font-family: 'Heebo', sans-serif;
-  padding-bottom: 2rem;
 } 
+.Toggler-logout{
+  margin-right: 10rem;
+  color: #333333;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Heebo', sans-serif;
+  margin-left: 2.5rem;
+  margin-top: 10px;
+  font-size: 20px;
+} 
+.Toggler-logout:hover{
+  color: black;
+}
+
+.Toggler-bag{
+  color:black;
+  text-decoration: none;
+  margin-left: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.Toggler-bag:hover{
+  color: black;
+}
 
 
-p{
+
+/* for toggler elements */
+.Toggler-h3{
   left: 0;
   right: 0;
   margin: auto;
@@ -46,11 +60,20 @@ p{
   font-size: 2rem;
 }
 
-.bag-quantity {
-  border-radius: 50%;
-  background: yellow;
-  font-size: 20px;
-  font-weight: 700;
-  color: black;
-  padding: 0 .5rem  0 .5rem;
+.Toggler-ul {
+  list-style: none;
+}
+
+.Toggler-ul li {
+  margin: 3rem 0;
+  border-bottom: .5px solid rgb(233, 227, 227);
+}
+
+.Toggler-ul a {
+  font-weight: bold;
+  text-decoration: none;  
+  color: #333;
+}
+.Toggler-ul a:hover {
+  color: #9c6a8d;
 }

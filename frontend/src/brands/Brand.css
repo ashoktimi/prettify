@@ -1,17 +1,10 @@
-.Brand-name{
-   text-transform: capitalize;
-   text-align: center;
-}
-
-.Brand-div {
-   display: flex;
-   flex-wrap: wrap;
-   width: 80%;
-   margin-left: 10%;
-}
- 
-.BrandCard-div {
-   margin-bottom: 1rem;
-   flex-basis: calc(33.33% - 1em);
-   text-decoration: none;
+.Head-Name{
+ text-transform: uppercase;
+ color: white;
+ background-color: rgb(37, 150, 190);
+ padding: 5px;
+ border-radius: 5px;
+ letter-spacing: 5px;
+ font-size: 25px;
+ padding-left: 10px;
 }

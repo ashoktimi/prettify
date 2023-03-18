@@ -1,0 +1,7 @@
+.NavBtm{
+    height: 20rem;
+    margin: 2rem 10% 15px;
+    object-fit: cover;
+    background-image: url('../images/bottom.jpg');
+    padding: 15px;
+}

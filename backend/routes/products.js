@@ -34,6 +34,25 @@ router.get("/", async function (req, res, next){
     }
 })
 
+router.get("/lists", async function (req, res, next){
+    try{
+        const products = await Product.getSpecificProducts();
+        return res.json({ products });
+    } catch (err) {
+     return next(err);
+    }
+})
+
+router.get("/random", async function (req, res, next){
+    try{
+        const products = await Product.getRandom();
+        return res.json({ products });
+    } catch (err) {
+     return next(err);
+    }
+})
+
+
 router.get("/:id", async function(req, res, next){
     try{
         const product = await Product.get(req.params.id);

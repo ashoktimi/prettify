@@ -24,7 +24,7 @@ const BrandList = ({ brands, handleHover }) =>{
           </ul> 
         </div>
         :
-        <ul style={{ listStyle: 'none' }}>
+        <ul className="Brandlist-toggler-ul">
           {brands.map(brand => (
           <li key={brand.id}><Link to={`/brands/${brand.name}/${brand.id}`}>{brand.name}</Link></li>
           ))}

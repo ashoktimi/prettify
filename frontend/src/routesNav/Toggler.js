@@ -6,18 +6,18 @@ import BrandList from "../brands/BrandList";
 import CategoryList from "../categories/CategoyList";
 import TagList from "../tags/TagLIst";
 import TypeList from "../types/TypeList";
-import UserContext from "../auth/userContext";
+import UserContext  from "../auth/userContext";
 import 'bootstrap/dist/css/bootstrap.css';
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import Button from 'react-bootstrap/Button';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { Container, Navbar, Offcanvas } from 'react-bootstrap'
 import './Toggler.css';
+
+
 
 
 const Toggler = ({ logout, brands, categories, tags }) =>{
 
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, handleToggleOffcanvas} = useContext(UserContext);
   const [showBrands, setShowBrands] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showTags, setShowTags] = useState(false);
@@ -25,8 +25,9 @@ const Toggler = ({ logout, brands, categories, tags }) =>{
   const [showTypes, setShowTypes] = useState(false);
   const [value, setValue] = useState('nail'); 
   const [typeDetail, setTypeDetail] = useState([]);
-  const { cartTotalQuantity } = useSelector((state) => state.cart);
 
+
+  
   useEffect(() =>{
     async function getBrands() {
     let types = await PrettifyApi.getAllTypes();     
@@ -70,52 +71,25 @@ const Toggler = ({ logout, brands, categories, tags }) =>{
   };
 
     return(
-        <>
-        <Navbar style={{ backgroundColor: '#C16FB8', padding: '1rem', height: '4rem'}}/>
-        <Navbar  expand='bg' className="mb-3">
+        <>  
+        <Navbar expand='bg' style={{padding:0}}>
           <Container fluid>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`}  />
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`}/>
             <div className="NavBar-name-div">
               {currentUser ? 
                 <Link to="/products" className="NavBar-name">Prettify</Link> 
                 :               
-                <Link to="/" className="NavBar-name">Prettify</Link>
+                <Link to="/" className="NavBar-name" style={{marginLeft: "10rem"}}>Prettify</Link>
               }
             </div>
             {currentUser ?
             <>
-            <Navbar.Brand>
-            <Link to="/cart">
-            <div className="nav-bag">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                fill="currentColor"
-                className="bi bi-handbag-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z" />
-              </svg>
-              <span className="bag-quantity">
-                <span>{ cartTotalQuantity }</span>
-              </span>
-            </div>
-            </Link>
-            </Navbar.Brand>
-            <Navbar.Brand >
-              <Link to="/" onClick={logout} className='NavBar-logout'>Log out</Link>
-            </Navbar.Brand>  
             </>
              :
-            <>
-             <Navbar.Brand>
-              <Link className="NavBar-link" to="/login">Login</Link>
-             </Navbar.Brand>
-             <Navbar.Brand>
-              <Link className="NavBar-link" to="/signup">Sign Up</Link>
-             </Navbar.Brand>
-             </>
+            <div style={{marginRight: '5rem'}}>
+              <Link className="NavBar-auth_Btn" to="/login">Login</Link>  
+              <Link className="NavBar-auth_Btn" to="/signup">Signup</Link>
+             </div>
              }
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand`}
@@ -126,13 +100,14 @@ const Toggler = ({ logout, brands, categories, tags }) =>{
               <>
               <Offcanvas.Header closeButton>
                 {(brands.length > 0 || categories.length || tags.length> 0 || typeDetail.length > 0) && (showBrands || showCategories || showTags || showTypes)&& (
-                  <Button onClick={handleBackClick}> ← </Button>
+                  <button  onClick={handleBackClick} style={{border:'none', fontSize:'25px', backgroundColor:'white'}}> {`<`} </button>
                 )}
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand`}>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand`} style={{color:'purple', left:0, right:0, margin:'auto'}}>
                   Prettify
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
+              
               {brands.length > 0  && showBrands ? (    
                <BrandList brands={brands} />
               ) : (categories.length > 0 && showCategories) ? (
@@ -142,9 +117,9 @@ const Toggler = ({ logout, brands, categories, tags }) =>{
               ):(typeDetail.length > 0 && showTypes)?(
                <TypeList types={typeDetail}/>
               ):
-              <ul style={{ listStyle: 'none'}} >
+
+              <ul className="Toggler-ul" >
                 <li><Link to="/products"  >ALL</Link></li>
-                <li><Link to="/shopping" >Shopping</Link></li>
                 {uniqueTypes.map(type => (
                   <li key={type}>
                     <Link data-key={type} onClick={handleTypeClick}>{type.toUpperCase()}</Link>
@@ -153,12 +128,15 @@ const Toggler = ({ logout, brands, categories, tags }) =>{
                 <li><Link onClick={handleBrandsClick}> BRANDS </Link></li>
                 <li><Link onClick={handleCateoryClick} >CATEGORY</Link></li>
                 <li><Link onClick={handleTagClick} >TAGS</Link></li>
-              </ul>
+              </ul>             
               }
-              <Link  to="/" onClick={logout} >LOG OUT</Link>
               </Offcanvas.Body>
+              <Link className="Toggler-bag" onClick={handleToggleOffcanvas}>
+                <AiOutlineShoppingCart size={30}/>
+              </Link>
+              <Link  to="/" className="Toggler-logout" onClick={logout} style={{marginBottom:'35px'}} >Log out</Link>      
               </>
-              : <p>Please login to see.</p>}
+              : <h3 className="Toggler-h3">Please login to see.</h3>}
             </Navbar.Offcanvas>
           </Container>
         </Navbar>
@@ -167,5 +145,3 @@ const Toggler = ({ logout, brands, categories, tags }) =>{
 }
 
 export default Toggler;
-
-

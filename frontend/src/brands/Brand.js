@@ -3,7 +3,9 @@ import { useParams, useNavigate   } from "react-router-dom";
 import PrettifyApi from "../api/api";
 import LoadingSpinner from "../helpers/LoadingSpinner";
 import ProductCard from "../products/productCard";
-import './Brand.css';
+import NavbarBottom from '../routesNav/NavBottom';
+import { Row, Col } from 'react-bootstrap';
+import  './Brand.css';
 
 /** Brand Detail page.
  *
@@ -34,34 +36,32 @@ const Brand = () =>{
       if (!brand) return <LoadingSpinner />;
 
       return(
-        <div>
-          {brand.products && brand.products.length >0 
-          ?<div>
-            {/* <h3 className="Brand-name">{brand.name}</h3> */}
-            <div className="Brand-div">
+        <>
+          {brand.products && brand.products.length >0 ?            
+            <Row style={{  width: '80%', left:0, right:0, margin: 'auto'}}> 
+            <div>
+              <h3 className="Head-Name">{brand.name}</h3> 
+            </div>
             {brand.products.map(p => (
-             <div className="BrandCard-div" key={p.id}>   
+             <Col key={p.id} xs={6} md={4}  style={{ height: '500px'}}>   
               <ProductCard 
                 id={p.id}             
                 name={p.name} 
                 price={p.price}
                 priceSign={p.price_sign}
                 prevPrice={p.prev_price}
-                image={p.image_link}
+                image_link={p.image_link}
                 rating={p.rating}
                 numOfRating={p.number_rating}
               />  
-             </div>        
+            </Col>       
           ))}
-          </div>
-          </div>
-          :(
-           <div>
-              <p>{id} not found.</p>
-           </div>
-          )}
-        </div>
-      )
-}
+          </Row>
+         :
+         null 
+        }
+        <NavbarBottom />
+      </>
+  )};
 
 export default  Brand;

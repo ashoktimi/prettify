@@ -39,10 +39,36 @@ class Product {
         }
 
         // Finalize query and return results
-        query += " ORDER BY name LIMIT 16";
+        query += ` ORDER BY name LIMIT (
+            SELECT CEILING(COUNT(*) / 3.0) * 3
+            FROM product
+        )`;
         const productRes = await db.query(query, queryValues);
         return productRes.rows;
     }
+
+
+    static async getRandom(){
+        const productRes = await db.query(`SELECT id, product_key, brand_id, name, price, price_sign, prev_price, image_link, description, rating, number_rating, category_id, type_id
+        FROM product
+        ORDER BY RANDOM()
+        LIMIT 15`)
+        const product = productRes.rows;
+        return product;        
+    }
+
+    // this returns a specific list of products to display
+    // the reason to have this method to get the products with nice image since the all products dom't have nice image so want to display these product
+    // in the products list page just to have a nice view of the project. 
+
+
+    static async getSpecificProducts() {        
+        const productRes = await db.query(`SELECT * FROM product WHERE id IN ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`, 
+            [45, 700, 331, 651, 92, 81, 510, 660, 502, 690, 824, 512, 513, 506, 603]);
+        const product = productRes.rows;
+        return product;
+    }
+  
   
     static async get(id) {
         const productRes = await db.query(`SELECT * FROM product WHERE id = $1`, [id]);
