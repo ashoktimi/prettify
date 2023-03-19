@@ -21,7 +21,6 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import UserContext from "../auth/userContext";
 import LoadingSpinner from "../helpers/LoadingSpinner";
 import NotFound from "./NotFound";
-import ShoppingCart from "./ShoppingCard";
 import CheckoutPage from "../cart/Checkout";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -116,8 +115,7 @@ async function login(loginData) {
                 <Route path='/' element={<Home/>}></Route>    
                 <Route path='/login' element={<LoginForm login={login}/>}></Route>
                 <Route path='/signup' element={<SignupForm signup={signup}/>}></Route>
-                <Route element={<PrivateRoute/>}>              
-                  <Route path="/shopping" element={<ShoppingCart />} />
+                <Route element={<PrivateRoute/>}>
                   <Route path='/products' element={<ProductList/>}></Route>
                   <Route path='/products/:name/:id' element={<Product/>}></Route>
                   <Route path='/brands/:name/:id' element={<Brand/>}></Route>   

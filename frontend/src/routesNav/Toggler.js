@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect} from "react";
-import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import PrettifyApi from "../api/api";
 import BrandList from "../brands/BrandList";

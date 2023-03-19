@@ -54,6 +54,7 @@ const Cart = () => {
           <img
             src={item.image_link}    
             style={{ width: "125px", height: "115px", objectFit: "cover" }}
+            alt={''}
           />
             {item.name}{" "}${(item.price)}
             {item.cartQuantity > 1 && (

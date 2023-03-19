@@ -5,7 +5,7 @@ import LoadingSpinner from "../helpers/LoadingSpinner";
 import { useDispatch } from "react-redux";
 import { Stack } from "react-bootstrap";
 
-const EmptyCart = ({}) => {
+const EmptyCart = () => {
     const [products, setProducts] = useState(null);
     const dispatch = useDispatch();
     useEffect(function getProductsOnMount() {
@@ -32,6 +32,7 @@ const EmptyCart = ({}) => {
             <img
               src={item.image_link}    
               style={{ width: "125px", height: "115px", objectFit: "cover" }}
+              alt={''}
             />
               {item.name}{" "}${(item.price)}
             </Stack> 
