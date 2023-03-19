@@ -1,4 +1,6 @@
 "use strict";
+/** Express app for prettify. */
+
 const express = require("express");
 const cors = require("cors");
 const { NotFoundError } = require("./expressError");
